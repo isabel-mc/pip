@@ -1,6 +1,6 @@
 PKG=numalg
 ENV=test
-REP=testpypi
+REP=pypi
 PYTHON=python3
 all::
 	$(PYTHON) -m build # pip install build

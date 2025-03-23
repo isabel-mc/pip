@@ -34,5 +34,6 @@ setuptools.setup(name='numalg',
 	],
 	python_requires='>=3.6',
 	py_modules = ['numalg'],
+    install_requires=[ 'numpy', ],
 	packages=setuptools.find_packages(),
 )
