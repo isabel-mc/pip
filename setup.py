@@ -25,7 +25,6 @@ setuptools.setup(name='numalg',
 	url="https://github.com/isabel-mc/pip",
 	classifiers=[
 		"Programming Language :: Python :: 3",
-		"License :: OSI Approved :: MIT License",
 		"Operating System :: OS Independent",
 		'Intended Audience :: Developers',
 		'Topic :: Scientific/Engineering :: Mathematics',
