@@ -34,7 +34,7 @@ def heun(f, y0, t0, tn, n=10) :
        k0 = f(t[i], y[i])
        k1 = f(t[i+1], y[i] + h * k0)
        y += [y[i] + h * (k0 + k1) / 2]
-    return (y[n], y, t, h)
+    return y[n], y, t.tolist(), h
 
 # Example
 def teste():

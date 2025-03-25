@@ -15,7 +15,7 @@ with open("README.md", encoding="utf8") as fh:
     readme = fh.read()
 
 setuptools.setup(name='numalg',
-	version='1.0.5',
+	version='1.0.6',
 	author='Isabel Reis dos Santos',
 	author_email="isabel.santos@tecnico.ulisboa.pt",
 	description="Numerical analysis algorithms",

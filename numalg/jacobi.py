@@ -40,7 +40,7 @@ def jacobi(a, b, norma, x=[], eps=1e-6, itermax=1000) :
         if dif[k] < eps:
             return (x, k+1, r, dif)
     print('Maximum number of iterations exceeded (itermax)')
-    return (x, k, r, dif)
+    return x, k, r, dif
 
 # Example
 def teste():
@@ -48,9 +48,8 @@ def teste():
     a = [[10, 2, 6], [1, 10, 8], [2, -7, -10]]
     b = [34, 28, -23]
     x0 = [1]*len(b)
-    x = jacobi(a, b, np.inf, x0)
-    print(x)
-    return x
+    x, k, r, dif = jacobi(a, b, np.inf, x0)
+    print(x, r, dif)
 
 if __name__ == "__main__":
     teste()

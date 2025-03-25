@@ -39,7 +39,7 @@ def gaussSeidel(a, b, norma, x = [], eps = 1e-6, itermax = 1000) :
         if dif[k] < eps:
             return x, r, dif
     print('Maximum number of iterations exceeded (itermax)') 
-    return x, r, dif
+    return x, r, [x.tolist() for x in dif]
 
 # Example
 def teste():

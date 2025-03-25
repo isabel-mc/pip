@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-'''Solves Boundary Value Problems (BVP) using finite difference method'''
+'''Solves Boundary Value Problems (BVP) using finite difference method
+   y" - w * y' - v * y = u, y(t0) = y0, y(tf) = yf, uniform mesh with (n+1) points.'''
 
 import numpy as np
 
@@ -64,7 +65,7 @@ def exerc2():
     print('exerc2')
     t0 = 0; y0 = 0; tf = np.pi; yf = 0; n = 3;
     w = lambda x: 0; v = lambda x: -1; u = lambda t: t; 
-    t,y = bvp(w,v,u,t0,tf,y0,yf,n)
+    t, y = bvp(w, v, u, t0, tf, y0, yf, n)
     print(t, y)
 
 def exerc3():
@@ -72,7 +73,7 @@ def exerc3():
     print('exerc3')
     t0 = 0; y0 = -0.3; tf = 0.5*np.pi; yf = -0.1; n = 5;
     w = lambda x: 1; v = lambda x: 2; u = lambda t: np.cos(t); 
-    t,y = bvp(w,v,u,t0,tf,y0,yf,n)
+    t, y = bvp(w, v, u, t0, tf, y0, yf, n)
     print(t, y)
 
 def exerc4():
@@ -80,7 +81,7 @@ def exerc4():
     print('exerc4')
     t0 = 0; y0 = 1; tf = 1; yf = 1; n = 3;
     w = lambda x: -2; v = lambda x: 0; u = lambda t: -10*t; 
-    t,y = bvp(w,v,u,t0,tf,y0,yf,n)
+    t, y = bvp(w, v, u, t0, tf, y0, yf, n)
     print(t, y)
 
 def exerc5():
@@ -88,14 +89,14 @@ def exerc5():
     print('exerc5')
     t0 = 0; y0 = 1; tf = 1; yf = 2; n = 4;
     w = lambda x: -2; v = lambda x: -1; u = lambda t: -10*t; 
-    t,y = bvp(w,v,u,t0,tf,y0,yf,n)
+    t, y = bvp(w, v, u, t0, tf, y0, yf, n)
     print(t, y)
 
 def exerc6():
     '''Example: y'' - sin(t) y' - cos(t) y = -10t, y(0) = 2 y(1) = 3'''
     print('exerc6')
     t0, y0, tf, yf, n, w, v, u = 0, 2, 1, 3, 4, lambda t: np.sin(t), lambda t: np.cos(t), lambda t: -10*t
-    t,y = bvp(w,v,u,t0,tf,y0,yf,n)
+    t, y = bvp(w, v, u, t0, tf, y0, yf, n)
     print(t, y)
 
 def teste():

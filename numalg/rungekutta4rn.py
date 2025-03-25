@@ -42,7 +42,7 @@ def rungekutta4rn(f, y0, t0, tn, n = 10):
 def teste():
     '''[y0'; y1'] = [y1; exp(t) - 2y1 - y0] with [y0(0); y1(0)] = [1; -1]'''
     import numpy as np
-    print('teste')
+    print("[y0'; y1'] = [y1; exp(t) - 2y1 - y0] with [y0(0); y1(0)] = [1; -1]")
     f = lambda t, y: np.array([y[1], np.exp(t) - 2 * y[1] - y[0]])
     y0 = [1, -1]; t0 = 0; tn = 0.2; n = 2;
     yn, t, y, h = rungekutta4rn(f, y0, t0, tn, n)

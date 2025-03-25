@@ -21,7 +21,6 @@ def lagrangepol(x, y):
     Example:
     x = [-0.8, 0, 1.5]; y = [-1.02, 0, 14.10];
     pol, l = lagrangepol(x, y)
-    print(d, p)
     returns
     pol = [3.5326087, 4.10108696, 0.]
     l1 = [0.54347826, -0.81521739, -0.]
@@ -43,7 +42,8 @@ def lagrangepol(x, y):
               p = np.poly1d(p) * np.poly1d([1, -x[k]]) / (x[m] - x[k])
        l.append(p)
        pol += y[m] * p
-    return pol, l
+    l = np.array([x.coeffs for x in l])
+    return pol.coeffs, [l[x].tolist() for x in range(len(l))]
 
 # Example
 def teste():
@@ -51,7 +51,8 @@ def teste():
     x = [-0.8, 0, 1.5]; y = [-1.02, 0, 14.10];
     pol, l = lagrangepol(x, y)
     print("lagrangepol([-0.8, 0, 1.5], [-1.02, 0, 14.10])") 
-    print(pol, l) 
+    print('p(x) = ', pol) 
+    print('l0(x), ..., ln(x)=', l) 
 
 if __name__ == "__main__":
     teste()   

@@ -2,7 +2,7 @@
 
 '''Newton method for solving nonlinear systems of equations.''' 
 
-import numpy
+import numpy as np
 from math import pow
 
 def newtonGen(f, jac, norma, x0=[], eps_abs=1e-6, eps_passo=1e-6, iter_max=1e3) :
@@ -27,31 +27,33 @@ def newtonGen(f, jac, norma, x0=[], eps_abs=1e-6, eps_passo=1e-6, iter_max=1e3) 
     '''
     dim = len(x0)
     fz = f(x0)
-    fdet = numpy.linalg.det(jac(x0))
+    fdet = np.linalg.det(jac(x0))
     for i in range(1, iter_max+1) :
+       print(i)
        if abs(fdet) < 1e-12 : # f'(x0) near zero
           print('The value of det(Jac) in xi can not be zero')
           print('the method does not converge')
-          return ()
-       delta = numpy.linalg.solve(jac(x0), -f(x0))
+          return x0, 0, 0, i
+       delta = np.linalg.solve(jac(x0), -f(x0))
        z = x0 + delta
        fz = f(z)
-       fdet = numpy.linalg.det(jac(z))
-       normadelta = numpy.linalg.norm(delta, norma)
-       normafz = numpy.linalg.norm(fz, norma)
+       fdet = np.linalg.det(jac(z))
+       normadelta = np.linalg.norm(delta, norma)
+       normafz = np.linalg.norm(fz, norma)
        if normadelta < eps_passo and normafz < eps_abs :
           break
        elif i == iter_max :
           print('Maximum number of iterations exceeded (iter_max)')
-          return (z, normafz, normadelta, i)
-    return (z, normafz, normadelta, i)
+          return z, normafz, normadelta, i
+       x0 = z
+    return z.tolist(), normafz, normadelta, i
 
 # Example
 def teste():
     '''System of two equations: x0^2 - 2 + (x1 - 1)^2 - 4 = 0 and (x0 - 3)^2 + (x1 - 2)^2 - 1 = 0'''
     from math import inf
-    f = lambda x: numpy.array( [ pow(x[0]-2, 2) + pow(x[1]-1, 2) - 4 , pow(x[0]-3, 2) + pow(x[1]-2, 2) - 1 ] )
-    jac = lambda x: numpy.array( [ [ 2 * x[0] - 4 , 2 * x[1] - 2 ] , [ 2 * x[0] - 6 , 2 * x[1] - 4 ] ] )
+    f = lambda x: np.array( [ pow(x[0]-2, 2) + pow(x[1]-1, 2) - 4 , pow(x[0]-3, 2) + pow(x[1]-2, 2) - 1 ] )
+    jac = lambda x: np.array( [ [ 2 * x[0] - 4 , 2 * x[1] - 2 ] , [ 2 * x[0] - 6 , 2 * x[1] - 4 ] ] )
     print( newtonGen(f, jac, inf, [2, 3], 1e-3, 1e-3, 100) )
 
 if __name__ == "__main__":
